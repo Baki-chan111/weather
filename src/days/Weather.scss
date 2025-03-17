@@ -1,0 +1,128 @@
+.weather-container {
+  background: #121212;
+  padding: 20px;
+  color: #f3f1f1;
+  font-family: "Arial", sans-serif;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.weather {
+  display: flex;
+  gap: 20px;
+
+  .weather__main {
+    background: #0f0e0e27;
+    border-radius: 10px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px 30px;
+    background: url(https://i0.hippopx.com/photos/174/427/589/gewitterstimmung-dark-clouds-storm-sky-thumb.jpg)
+      no-repeat center;
+  }
+
+  .temperature {
+    font-size: 80px;
+    color: #4a90e2;
+  }
+
+  .weather-icon img {
+    width: 80px;
+  }
+
+  .details {
+    text-align: right;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
+  }
+
+  .weather-box {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+}
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  background: url(https://images.pexels.com/photos/19066820/pexels-photo-19066820/free-photo-of-natureza-ceu-por-do-sol-nuvens.jpeg)
+    no-repeat center;
+  background-size: 100%;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+
+  .info-item {
+    line-height: 40px;
+    margin-bottom: 10px;
+    span {
+      font-weight: bold;
+      color: #0091ff;
+    }
+  }
+}
+
+.tabs {
+  display: flex;
+  margin-top: 20px;
+
+  button {
+    background: rgb(19, 16, 16);
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: 0.3s;
+
+    &.active {
+      background: #3204af;
+    }
+
+    &:hover {
+      background: #08f8f09d;
+    }
+  }
+}
+
+.weather-list {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.weather-card {
+  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw1U4OhQTgI5C4VSAOWxw7gLFs1tkR_rFrew&s)
+    center;
+  padding: 45px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100%;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: scale(0.92);
+    box-shadow: 0 0 10px rgba(166, 162, 162, 0.72);
+  }
+
+  .icon img {
+    width: 40px;
+  }
+
+  .temp {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .min-temp {
+    color: rgba(255, 255, 255, 0.733);
+  }
+}

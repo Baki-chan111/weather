@@ -1,0 +1,48 @@
+* {
+  font-family: Montserrat;
+}
+body {
+  background: #121212;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 10px;
+  background: #121212;
+}
+
+.logo {
+  display: flex;
+  font-size: 10px;
+  align-items: center;
+  gap: 9px;
+  color: #4793ff;
+}
+.select {
+  display: flex;
+  gap: 30px;
+}
+.icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  color: #4793ff;
+}
+.select select {
+  background-color: #4f4f4f;
+  color: #fff;
+  border-radius: 8px;
+  height: 30px;
+  width: 150px;
+  text-align: center;
+}
+
+.icon {
+  cursor: pointer;
+}
+
+.headerInfo {
+  color: #fff;
+}
