@@ -1,16 +1,12 @@
 * {
   font-family: Montserrat;
 }
-body {
-  background: #121212;
-}
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-block: 10px;
-  background: #121212;
 }
 
 .logo {
@@ -19,6 +15,7 @@ body {
   align-items: center;
   gap: 9px;
   color: #4793ff;
+  cursor: pointer;
 }
 .select {
   display: flex;
@@ -31,18 +28,29 @@ body {
   color: #4793ff;
 }
 .select select {
-  background-color: #4f4f4f;
-  color: #fff;
+  background-color: #050505;
+  color: #ffffffc7;
   border-radius: 8px;
   height: 30px;
   width: 150px;
   text-align: center;
+  cursor: pointer;
 }
 
 .icon {
   cursor: pointer;
 }
 
-.headerInfo {
-  color: #fff;
+.darkMode {
+  background-color: #060606e2;
+  color: #ffffff;
+
+  select {
+    background-color: #fdfbfbfe;
+    color: #040404;
+  }
+
+  .icon {
+    color: #f68103;
+  }
 }

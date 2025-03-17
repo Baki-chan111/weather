@@ -25,6 +25,9 @@ const CurrentWeather = () => {
   const [city, setCity] = useState(searchParamsResult);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [darkMode, setDarkMode] = useState(
+    () => localStorage.getItem("theme") === "dark"
+  );
 
   const API_KEY = "68a3ddbb2e407595fd082c052a080609";
   const API_URL = "https://api.openweathermap.org/data/2.5/weather";
@@ -53,9 +56,19 @@ const CurrentWeather = () => {
   useEffect(() => {
     getHeaderData();
     setCity(searchParamsResult);
-    const interval = setInterval(getHeaderData, 86400000); // Обновление данных каждый день (24 часа = 86400000 миллисекунд)
-    return () => clearInterval(interval); // Очистка интервала при размонтировании компонента
+    const interval = setInterval(getHeaderData, 86400000);
+    return () => clearInterval(interval);
   }, [city, searchParamsResult]);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("darkMode");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.body.classList.remove("darkMode");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
 
   if (loading) {
     return <h1>Загрузка данных...</h1>;
@@ -70,7 +83,7 @@ const CurrentWeather = () => {
   }
 
   return (
-    <div className="container">
+    <div className={`container ${darkMode ? "dark" : ""}>`}>
       <div className="weather">
         <div className="weather__main">
           {headerData && headerData.main && (
@@ -99,7 +112,8 @@ const CurrentWeather = () => {
         </div>
         <div className="weather-info">
           <div className="info-item">
-            <span>Температура:</span> {headerData.main?.temp ?? "Нет данных"}°C
+            <span>Температура:</span> {headerData.main?.temp ?? "Нет данных"}
+            °C
           </div>
           <div className="info-item">
             <span> Погода: </span>
@@ -109,7 +123,7 @@ const CurrentWeather = () => {
             <span>Влажность:</span> {headerData.main?.humidity ?? "Неизвестно"}%
           </div>
           <div className="info-item">
-            <span>Ветер:</span> {headerData.wind?.speed ?? "Неизвестно"}
+            <span>Ветер:</span> {headerData.wind?.speed ?? "Неизвестно"}м/с
           </div>
         </div>
       </div>
@@ -146,7 +160,7 @@ const WeatherForecast = () => {
 
   const tabs = [{ id: "week", label: "Прогноз недели" }];
 
-  const fetchForecastData = async () => {
+  const ForecastData = async () => {
     const city = "Bishkek";
     const API_KEY = "68a3ddbb2e407595fd082c052a080609";
     const API_URL = "https://api.openweathermap.org/data/2.5/forecast";
@@ -171,7 +185,7 @@ const WeatherForecast = () => {
           day: new Date(item.dt * 1000).toLocaleString("ru-RU", {
             weekday: "long",
           }),
-          date: new Date(item.dt * 1000).toLocaleDateString("ru-RU"),
+          date: new Date(item.dt * 1000).toLocaleDateString("en-EN"),
           temp: Math.floor(item.main.temp),
           minTemp: Math.floor(item.main.temp_min),
           condition: item.weather[0].description,
@@ -185,7 +199,7 @@ const WeatherForecast = () => {
   };
 
   useEffect(() => {
-    fetchForecastData();
+    ForecastData();
   }, []);
 
   return (

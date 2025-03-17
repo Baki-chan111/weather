@@ -11,6 +11,9 @@ const Header = () => {
   const [city, setCity] = useState("Бишкек");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [darkMode, setDarkMode] = useState(
+    () => localStorage.getItem("theme") === "dark"
+  );
 
   const API_KEY = "68a3ddbb2e407595fd082c052a080609";
   const API_URL = "https://api.openweathermap.org/data/2.5/weather";
@@ -41,16 +44,29 @@ const Header = () => {
     setSearchParams({ city: city });
   }, [city]);
 
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add(scss.darkMode);
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.body.classList.remove(scss.darkMode);
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
+
   return (
-    <header id={scss.header}>
+    <header id={scss.header} className={darkMode ? scss.dark : ""}>
       <div className="container">
         <div className={scss.header}>
           <div className={scss.logo}>
             <img src={img} alt="logo" />
-            <h1> REACT WEATHER</h1>
+            <h1> WEATHER</h1>
           </div>
           <div className={scss.select}>
-            <MdOutlineInvertColors className={scss.icon} />
+            <MdOutlineInvertColors
+              className={scss.icon}
+              onClick={() => setDarkMode(!darkMode)}
+            />
             <select
               name="city"
               value={city}
@@ -67,33 +83,6 @@ const Header = () => {
             </select>
           </div>
         </div>
-
-        {/* <div className={scss.search}>
-          <input
-            type="text"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            placeholder="Введите город"
-          />
-          <button onClick={getHeaderData}>Получить данные</button>
-        </div> */}
-
-        {/* {loading && <p>Загрузка...</p>}
-        {error && <p className={scss.error}>{error}</p>}
-
-        {headerData && headerData.main && (
-          <div className={scss.headerInfo}>
-            <h2>
-              {headerData.name}, {headerData.sys?.country || "Неизвестно"}
-            </h2>
-            <p>Температура: {headerData.main?.temp ?? "Нет данных"}°C</p>
-            <p>
-              Погода: {headerData.weather?.[0]?.description || "Нет данных"}
-            </p>
-            <p>Влажность: {headerData.main?.humidity ?? "Неизвестно"}%</p>
-            <p>Ветер: {headerData.wind?.speed ?? "Неизвестно"} м/с</p>
-          </div>
-        )} */}
       </div>
     </header>
   );

@@ -1,5 +1,4 @@
 .weather-container {
-  background: #121212;
   padding: 20px;
   color: #f3f1f1;
   font-family: "Arial", sans-serif;
@@ -125,4 +124,8 @@
   .min-temp {
     color: rgba(255, 255, 255, 0.733);
   }
+}
+
+.darkMode {
+  color: #ffffff;
 }
